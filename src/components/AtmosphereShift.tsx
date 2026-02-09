@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Music, Star, Waves } from 'lucide-react';
+import { ArrowRight, GlassWater, Music, Star, Waves } from 'lucide-react';
 
 interface AtmosphereShiftProps {
   isNight: boolean;
