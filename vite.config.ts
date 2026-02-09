@@ -5,6 +5,7 @@ import { componentTagger } from "glyphor-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   server: {
     host: "::",
     port: 8080,
