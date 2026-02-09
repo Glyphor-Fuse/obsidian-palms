@@ -1,34 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
-
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from 'react';
+import { Hero } from '@/components/Hero';
+import { AtmosphereShift } from '@/components/AtmosphereShift';
+import { SanctuaryGrid } from '@/components/SanctuaryGrid';
+import { Footer } from '@/components/Footer';
 
 const Index = () => {
+  const [isNight, setIsNight] = useState(false);
+
+  // Toggle night mode class on document for global CSS variable shifts
+  useEffect(() => {
+    if (isNight) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isNight]);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
-      {/* This is a placeholder page. 
-        It demonstrates how to use "shadcn-ui" components and Tailwind CSS.
-        The AI interprets these imports as available UI primitives.
-      */}
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-center">Welcome to Your Project</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-center text-muted-foreground">
-            Start building your application by editing <code className="bg-muted px-1 rounded">src/pages/Index.tsx</code>
-          </p>
-          
-          <div className="space-y-2">
-            <Input placeholder="Enter your project name..." />
-            <Button className="w-full">
-              Create Something Amazing
-            </Button>
+    <main className="min-h-screen bg-background text-foreground">
+      <Hero isNight={isNight} onToggle={() => setIsNight(!isNight)} />
+      
+      <div className="relative z-0">
+        <AtmosphereShift isNight={isNight} />
+        
+        <SanctuaryGrid />
+        
+        <section className="bg-primary text-primary-foreground py-24 md:py-32">
+          <div className="container px-6 text-center space-y-8">
+            <h2 className="text-4xl md:text-7xl font-display font-black uppercase tracking-tighter max-w-4xl mx-auto leading-none">
+              Witness the <br /> intersection of <span className="italic text-accent">raw jungle</span> & refined design.
+            </h2>
+            <p className="text-lg md:text-xl font-light opacity-80 max-w-2xl mx-auto uppercase tracking-widest">
+              Limited to 24 Guests. Infinite Experiences.
+            </p>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </section>
+
+        <Footer />
+      </div>
+    </main>
   );
 };
 
